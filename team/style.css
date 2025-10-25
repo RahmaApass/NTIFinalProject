@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+.team{
+    margin: 0;
+    padding: 0;
+    background-color:#a6d0b1 ;
+    font-family: "Cairo", sans-serif;
+}
+.cont{
+    width: 80%;
+    margin: auto;
+}
+.title{
+    text-align: center;
+    color: #005014;
+    font-size: 40px;
+    font-weight: 400;
+    text-transform: capitalize;
+    font-family: "Cairo", sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings:
+    "slnt" 0;
+}
+.team-content{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.team-item{
+    width: 30%;
+    position: relative;
+    margin-top: 10px;
+    font-family: "Cairo", sans-serif;
+    border-radius:10%;
+    overflow: hidden;
+}
+.img-team img{
+    width: 100%;
+    height: 400px;
+}
+.img-team {
+    position: relative;
+}
+.links{
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    display: inline-block;
+}
+.links li{
+    list-style: none;
+}
+
+.links i{
+    display: inline-block;
+    text-align: center;
+    color: #a6d0b1;
+    font-size: 30px;
+}
+
+.name-team{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: antiquewhite;
+    height: 100%;
+    width: 100%;
+    transition:    ease 1s;
+    overflow: hidden;
+    border-radius:10%;
+
+}
+.team-item:hover .name-team{
+    transform: rotate(16deg);
+    top: 250px;
+    height: 50%;
+    overflow: hidden;
+}
+.team-item:hover .team-item{
+overflow: hidden;
+}
+.name-team h3{
+    text-align: center;
+  color: #005014;
+  font-size: 25px;
+  margin-top: 40px;
+transition: ease .5s;
+}
+.name-team p{
+    text-align: center;
+  color: #005014;
+  font-size: 15px;
+  margin: 80px 8px;
+  transition: ease .5s;
+
+}
+.team-item:hover p{
+    margin: 10px 8px;
+}
+.team-item:hover h3{
+    margin-top: 10px;
+}
