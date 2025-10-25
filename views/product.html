@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dental Store</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+      integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/product.css" />
+  </head>
+  <body>
+    <div class="header">
+      <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container-fluid">
+          <div class="logo">
+            <img
+              src="/images/Logo-removebg-preview.png"
+              alt="Medic Tool Logo"
+            />
+          </div>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="../views/index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#services">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../views/contact_us.html"
+                  >Contact Us</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Sections
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="../views/product.html"
+                      >Dentist</a
+                    >
+                  </li>
+                  <li><a class="dropdown-item" href="#">Pediatrics</a></li>
+                  <li>
+                    <a class="dropdown-item" href="obstetrics-products-API.html"
+                      >Obstetrics & Gynecology</a
+                    >
+                  </li>
+                  <li><a class="dropdown-item" href="#">Plastic Surgeon</a></li>
+                  <li><a class="dropdown-item" href="#">Vet</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="logout()">Logout</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="profile.html">your Profile</a>
+              </li>
+            </ul>
+
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="title">
+      <div class="title-content">
+        <h2>Dental Store</h2>
+        <a href="#">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <a href="#">Dental Store</a>
+      </div>
+    </div>
+
+    <div class="lef-and-right-space-container">
+      <div class="product-content">
+        <div class="product-grid" id="dentalMachines"></div>
+      </div>
+      <div class="shop-content">
+        <div class="shop-filters">
+          <div class="filter-card">
+            <h4>Category</h4>
+            <div class="checkbox">
+              <div>
+                <input
+                  type="radio"
+                  name="category"
+                  value="all"
+                  id="cat-all"
+                  checked
+                /><label for="cat-all">All</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="category"
+                  value="rent"
+                  id="rent"
+                /><label for="rent">For Rent</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="category"
+                  value="sell"
+                  id="sell"
+                /><label for="sell">For Sale</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Filter -->
+          <div class="filter-card">
+            <h4>Price Range</h4>
+            <div class="price-range">
+              <div class="minprice">
+                <label for="minPrice">Min:</label>
+                <input
+                  type="number"
+                  id="minPrice"
+                  placeholder="0"
+                  class="form-control mb-2"
+                />
+              </div>
+              <div class="maxprice">
+                <label for="maxPrice">Max:</label>
+                <input
+                  type="number"
+                  id="maxPrice"
+                  placeholder="10000"
+                  class="form-control mb-2"
+                />
+              </div>
+              <button
+                id="filterPriceBtn"
+                class="btn pricebtn btn-primary btn-sm w-100"
+              >
+                Filter
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="shop-products">
+          <div class="orderby">
+            <select name="order">
+              <option value="best-selling">Best Selling</option>
+              <option value="a:z">A:Z</option>
+              <option value="z:a">Z:A</option>
+              <option value="new">New</option>
+            </select>
+            <button><i class="fa-solid fa-border-all"></i></button>
+            <button><i class="fa-solid fa-grip-lines"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function displayDentalMachines() {
+        const equipmentData =
+          JSON.parse(localStorage.getItem("equipmentData")) || [];
+        const dentalMachines = equipmentData.filter(
+          (item) => item.field === "dental"
+        );
+
+        const categoryInput = document.querySelector(
+          'input[name="category"]:checked'
+        );
+        const selectedCategory = categoryInput ? categoryInput.value : "all";
+
+        const minPriceInput = document.getElementById("minPrice");
+        const maxPriceInput = document.getElementById("maxPrice");
+
+        const minPrice = minPriceInput?.value
+          ? parseFloat(minPriceInput.value)
+          : null;
+        const maxPrice = maxPriceInput?.value
+          ? parseFloat(maxPriceInput.value)
+          : null;
+
+        const filteredMachines = dentalMachines.filter((machine) => {
+          const categoryMatch =
+            selectedCategory === "all" || selectedCategory === machine.action;
+
+          const price =
+            machine.action === "rent"
+              ? parseFloat(machine.rentPrice)
+              : parseFloat(machine.sellPrice);
+
+          const priceMatch =
+            (minPrice === null || price >= minPrice) &&
+            (maxPrice === null || price <= maxPrice);
+
+          return categoryMatch && priceMatch;
+        });
+
+        const container = document.getElementById("dentalMachines");
+        container.innerHTML = "";
+
+        if (filteredMachines.length === 0) {
+          container.innerHTML = `<p>No dental equipment found.</p>`;
+          return;
+        }
+
+        filteredMachines.forEach((machine) => {
+          const actionText =
+            machine.action === "rent"
+              ? "For Rent Only"
+              : machine.action === "sell"
+              ? "For Sale Only"
+              : "Available for Rent and Sale";
+
+          const conditionText =
+            machine.condition === "excellent"
+              ? "Excellent"
+              : machine.condition === "very-good"
+              ? "Very Good"
+              : machine.condition === "good"
+              ? "Good"
+              : machine.condition || "Not specified";
+          console.log(machine);
+          container.innerHTML += `
+        <div class="product-card">
+          <img src="../Dental/${machine.image}" alt="${
+            machine.equipmentName
+          }" />
+          <p class="brand"><strong>Center Name:</strong> ${
+            machine.brandName
+          }</p>
+          <p class="name"><strong>Machine Name:</strong> ${
+            machine.equipmentName
+          }</p>
+          <p class="action"><strong>Available:</strong> ${actionText}</p>
+          <p class="condition"><strong>Condition:</strong> ${conditionText}</p>
+          <button onclick='viewDetails(${JSON.stringify(machine).replace(
+            /"/g,
+            "&quot;"
+          )})'>
+            View Details
+          </button>
+        </div>
+      `;
+        });
+      }
+
+      function viewDetails(machine) {
+        const currentUser = JSON.parse(localStorage.getItem("CurrentUser"));
+        if (!currentUser) {
+          sessionStorage.setItem("redirectAfterSignIn", window.location.href);
+          alert("You must log in first to view details.");
+          window.location.href = "signin.html";
+          return;
+        }
+        localStorage.setItem("selectedProduct", JSON.stringify(machine));
+        window.location.href = "../views/products details.html";
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const categoryRadios = document.querySelectorAll(
+          'input[name="category"]'
+        );
+        categoryRadios.forEach((radio) => {
+          radio.addEventListener("change", displayDentalMachines);
+        });
+
+        const priceFilterBtn = document.getElementById("filterPriceBtn");
+        if (priceFilterBtn) {
+          priceFilterBtn.addEventListener("click", displayDentalMachines);
+        }
+
+        // أول مرة تشغيل الصفحة
+        displayDentalMachines();
+      });
+    </script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+      integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #85aa911e;
+        margin: 0;
+        padding: 20px;
+        direction: rtl; /* Right-to-left for Arabic */
+      }
+      .equipment-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 25px;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+      .equipment-table thead th {
+        background-color: #648d66;
+        color: white;
+        padding: 15px 10px;
+        text-align: right;
+        font-weight: bold;
+        font-size: 1.05em;
+      }
+      .equipment-table tbody td {
+        padding: 12px 10px;
+        border-bottom: 1px solid #eee;
+        color: #444;
+        vertical-align: middle;
+      }
+      .equipment-table tbody tr:last-child td {
+        border-bottom: none;
+      }
+      .equipment-table tbody tr:hover {
+        background-color: #f9fbfd;
+      }
+      .equipment-image {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 1px solid #eee;
+      }
+      .no-data {
+        text-align: center;
+        padding: 40px;
+        color: #888;
+        font-size: 1.2em;
+      }
+      .comment {
+        margin: 10px 20px;
+        background-color: #e7e7e7;
+        border-radius: 10px;
+        padding: 5px 15px 15px 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="equipment-list" class="form-container">
+      <h2><i class="fas fa-list"></i> قائمة الآلات المتاحة</h2>
+      <div id="equipmentTableContainer">
+        <table class="equipment-table">
+          <thead>
+            <tr>
+              <th>الصورة</th>
+              <th>اسم البراند</th>
+              <th>اسم الآلة</th>
+              <th>المجال</th>
+              <th>الحالة</th>
+              <th>الإجراء</th>
+              <th>المدة</th>
+              <th>سعر الإيجار</th>
+              <th>سعر البيع</th>
+              <th>الوصف</th>
+              <th>الإجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="equipmentTableBody">
+            <tr>
+              <td colspan="11" class="no-data">
+                <i
+                  class="fas fa-inbox"
+                  style="
+                    font-size: 48px;
+                    color: #ccc;
+                    margin-bottom: 10px;
+                    display: block;
+                  "
+                ></i>
+                لا توجد آلات مسجلة حتى الآن
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="reviewsContainer">
+      <h2>التعليقات</h2>
+      <div class="comment">
+        <h3>الاسم</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+          totam accusamus vel deserunt similique ut!
+        </p>
+        <button>read more</button>
+      </div>
+    </div>
+
+    <script>
+      function display() {
+        const container = document.getElementById("reviewsContainer");
+        if (!container) {
+          console.warn("⚠ reviewsContainer مش موجود");
+          return;
+        }
+
+        const reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+        const currentUser = localStorage.getItem("currentUser") || "";
+        container.innerHTML = "";
+
+        reviews.forEach((review, index) => {
+          const div = document.createElement("div");
+          div.className = "review";
+          div.innerHTML = `
+          <div class="username"><strong>${review.name}</strong></div>
+          <div class="review-stars">${"★".repeat(review.rating)}${"☆".repeat(
+            5 - review.rating
+          )}</div>
+          <div class="review-text">${review.comment}</div>
+          ${
+            review.name === currentUser
+              ? `
+            <div class="review-buttons">
+              <button class="edit-btn">تعديل</button>
+              <button class="delete-btn">حذف</button>
+            </div>`
+              : ""
+          }
+        `;
+        });
+      }
+    </script>
+
+    <!-- <script>
+  function displayDentalMachines() {
+    const equipmentData = JSON.parse(localStorage.getItem('equipmentData')) || [];
+    const dentalMachines = equipmentData.filter(item => item.field === 'dental');
+
+    const container = document.getElementById('dentalMachines');
+    container.innerHTML = '';
+
+    if (dentalMachines.length === 0) {
+      container.innerHTML = <p>No dental equipment found.</p>;
+      return;
+    }
+
+    dentalMachines.forEach(machine => {
+      // تحديد النصوص المعروضة
+      const actionText = machine.action === 'rent' ? 'للتأجير فقط' :
+                         machine.action === 'sell' ? 'للبيع فقط' :
+                         'للتأجير والبيع';
+
+      const conditionText = machine.condition === 'excellent' ? 'ممتازة' :
+                            machine.condition === 'very-good' ? 'جيدة جداً' :
+                            machine.condition === 'good' ? 'جيدة' :
+                            machine.condition || 'غير محدد';
+
+      container.innerHTML += `
+        <div class="product-card">
+          <img src="${machine.image || '../images/default.png'}" alt="${machine.equipmentName}" />
+          <p class="brand"><strong>اسم المركز:</strong> ${machine.brandName}</p>
+          <p class="name"><strong>اسم الآلة:</strong> ${machine.equipmentName}</p>
+          <p class="action"><strong>متاحة:</strong> ${actionText}</p>
+          <p class="condition"><strong>الحالة:</strong> ${conditionText}</p>
+          <button onclick='viewDetails(${JSON.stringify(machine).replace(/"/g, '&quot;')})'>
+    عرض التفاصيل
+</button>
+        </div>
+      `;
+    });
+  }
+  </script> -->
+  </body>
+</html>

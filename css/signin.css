@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: #e2e8f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 800px;
+    height: 500px;
+    background: #fff;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.left-panel {
+    background: #439e69;
+    color: #fff;
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.left-panel h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.left-panel p {
+    font-size: 14px;
+    margin-bottom: 30px;
+    max-width: 250px;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: #439e69;
+}
+
+.right-panel {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-panel h1 {
+    color: #439e69;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus {
+    border-color: #439e69;
+}
+
+.btn-fill {
+    width: 100%;
+    padding: 12px;
+    background: #439e69;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-fill:hover {
+    background: #23a086;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.message.success {
+    color: #439e69;
+}
+
+.message.error {
+    color: #dc3545;
+}

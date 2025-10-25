@@ -1,0 +1,118 @@
+<!--<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفعيل الأدمن الرئيسي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f4f6f8;
+            direction: rtl;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #439e69;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background: #2d7a4a;
+        }
+        .message {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تفعيل الأدمن الرئيسي</h1>
+        <p>اضغط على الزر أدناه لتفعيل حساب الأدمن الرئيسي في localStorage</p>
+        <button onclick="activateAdmin()">تفعيل الأدمن الرئيسي</button>
+        <button onclick="checkAdmin()">فحص الأدمن الرئيسي</button>
+        <button onclick="clearStorage()">مسح localStorage</button>
+        <div id="message"></div>
+        
+        <h3>اختبار تسجيل الدخول:</h3>
+        <p><strong>البريد الإلكتروني:</strong> admin@example.com</p>
+        <p><strong>كلمة المرور:</strong> adminpassword</p>
+        
+        <a href="signin.html"><button>الذهاب لصفحة تسجيل الدخول</button></a>
+    </div>
+
+    <script>
+        function activateAdmin() {
+            // إنشاء حساب الأدمن الرئيسي
+            const superAdmin = {
+                name: 'Super Admin',
+                email: 'admin@example.com',
+                password: 'adminpassword',
+                role: 'super_admin'
+            };
+            
+            let signUpContainer = JSON.parse(localStorage.getItem("SignUp")) || [];
+            
+            // التحقق من وجود الأدمن الرئيسي
+            const adminExists = signUpContainer.some(user => user.email === 'admin@example.com' && user.role === 'super_admin');
+            
+            if (!adminExists) {
+                signUpContainer.push(superAdmin);
+                localStorage.setItem("SignUp", JSON.stringify(signUpContainer));
+                showMessage('تم تفعيل الأدمن الرئيسي بنجاح!', 'success');
+            } else {
+                showMessage('الأدمن الرئيسي موجود بالفعل!', 'success');
+            }
+        }
+        
+        function checkAdmin() {
+            const users = JSON.parse(localStorage.getItem("SignUp")) || [];
+            const admin = users.find(user => user.role === 'super_admin');
+            
+            if (admin) {
+                showMessage(`الأدمن الرئيسي موجود: ${admin.name} (${admin.email})`, 'success');
+            } else {
+                showMessage('لا يوجد أدمن رئيسي!', 'error');
+            }
+        }
+        
+        function clearStorage() {
+            localStorage.clear();
+            showMessage('تم مسح localStorage بالكامل', 'success');
+        }
+        
+        function showMessage(text, type) {
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = text;
+            messageElement.className = `message ${type}`;
+        }
+        
+        // تفعيل الأدمن الرئيسي تلقائياً عند تحميل الصفحة
+        window.onload = function() {
+            activateAdmin();
+        };
+    </script>
+</body>
+</html>
+
+-->

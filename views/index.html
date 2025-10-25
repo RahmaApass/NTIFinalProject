@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medic Tool</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <style>
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .content {
+      left: 50% !important;
+      width: 90%;
+      transform: translateX(-50%);
+      padding: 0 10px;
+    }
+
+    .content h4 {
+      padding-left: 0;
+      font-size: 18px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .carddisplay {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card {
+        width: 90% !important;
+        margin-bottom: 20px;
+      }
+
+      .ABOUT {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about,
+      .why-us {
+        width: 90% !important;
+        margin: 10px 0;
+      }
+
+      .why-card {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cards {
+        width: 80% !important;
+      }
+
+      .section {
+        flex: 0 0 80% !important;
+      }
+
+      .team-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .team-item {
+        width: 90% !important;
+      }
+    }
+  </style>
+
+  <body>
+    <!-- HTML Navbar -->
+    <div class="header">
+      <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container-fluid">
+          <div class="logo">
+            <img
+              src="/images/Logo-removebg-preview.png"
+              alt="Medic Tool Logo"
+            />
+          </div>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#services">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../views/contact_us.html"
+                  >Contact Us</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Sections
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="../views/product.html"
+                      >Dentist</a
+                    >
+                  </li>
+                  <li><a class="dropdown-item" href="#">Pediatrics</a></li>
+                  <li>
+                    <a class="dropdown-item" href="obstetrics-products-API.html"
+                      >Obstetrics & Gynecology</a
+                    >
+                  </li>
+                  <li><a class="dropdown-item" href="#">Plastic Surgeon</a></li>
+                  <li><a class="dropdown-item" href="#">Vet</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="logout()">Logout</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="profile.html">your Profile</a>
+              </li>
+            </ul>
+
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <main>
+      <section class="Home" id="home">
+        <div class="over-lay">
+          <div class="content">
+            <h2 class="h2" style="font-size: 100px">Medic Tool</h2>
+            <h4>
+              Because the success of your care begins with the right tools...
+              Discover reliable medical equipment leasing that fits your needs.
+              Whether you're looking for modern devices or high-quality
+              pre-owned tools, our platform makes it easy to rent what you need
+              — affordably and efficiently. Keep your focus on patient care, and
+              let us handle the equipment.
+            </h4>
+            <div
+              id="userWelcome"
+              style="color: white; margin: 20px 0; font-size: 18px"
+            ></div>
+
+            <a href="contact_us.html">
+              <button class="button">Contact Us</button></a
+            >
+            <a href="#services">
+              <button class="button">Our Services</button></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="services" id="services">
+        <h2>Our Services</h2>
+        <div class="carddisplay">
+          <div class="card">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+            <h4>Sales</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor,
+              omnis.
+            </p>
+          </div>
+          <div class="card mid">
+            <i class="fa-solid fa-repeat"></i>
+            <h4>Rent</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor,
+              omnis.
+            </p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-hospital"></i>
+            <h4>Heavy Equipment</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor,
+              omnis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="ABOUT" id="about">
+        <div class="about">
+          <h2>About</h2>
+          <p>
+            At Medic Tool, we fully understand the challenges that doctors and
+            medical students face when it comes to accessing the necessary tools
+            and equipment for their practice and studies. From the high costs of
+            purchasing modern devices to the need for flexible access to
+            specific tools for limited periods, Medic Tool is here to provide
+            innovative and efficient solutions.
+          </p>
+        </div>
+
+        <div class="why-us">
+          <h2>Why Us</h2>
+          <div class="why-card">
+            <div class="cards">
+              <i class="fa-solid fa-truck-fast"></i>
+              <h4>Fast Delivery</h4>
+            </div>
+            <div class="cards">
+              <i class="fa-solid fa-plane-departure"></i>
+              <h4>Shipping to All Countries</h4>
+            </div>
+            <div class="cards">
+              <i class="fa-solid fa-virus-slash"></i>
+              <h4>Continuous Sterilization</h4>
+            </div>
+            <div class="cards">
+              <i class="fa-solid fa-heart-pulse"></i>
+              <h4>Ongoing Care</h4>
+            </div>
+            <div class="cards">
+              <i class="fa-solid fa-headset"></i>
+              <h4>24/7 Customer Support</h4>
+            </div>
+            <div class="cards">
+              <i class="fa-solid fa-handshake"></i>
+              <h4>Cash on Delivery</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <a href="#home" class="up">
+        <i class="fa-solid fa-circle-arrow-up"></i>
+      </a>
+      <section class="scroll" id="sectionrow">
+        <div class="container-sections" tabindex="0">
+          <div class="section">
+            <img src="/images/dentist (2).jpg " alt="Dentist" />
+            <div class="caption">
+              <h2>Dentist</h2>
+              <a href="product.html"><button>See More</button></a>
+            </div>
+          </div>
+
+          <div class="section">
+            <img src="../images/child.jpg" alt="Pediatrics" />
+            <div class="caption">
+              <h2>Pediatrics</h2>
+              <a href="product.html"><button>See More</button></a>
+            </div>
+          </div>
+
+          <div class="section">
+            <img src="../images/woman.jpg" alt="OB/GYN" />
+            <div class="caption">
+              <h2>Obstetrics & Gynecology</h2>
+              <a href="obstetrics-products-API.html"
+                ><button>See More</button></a
+              >
+            </div>
+          </div>
+
+          <div class="section">
+            <img src="../images/botox.jpg" alt="Plastic Surgeon" />
+            <div class="caption">
+              <h2>Plastic Surgeon</h2>
+              <button>See More</button>
+            </div>
+          </div>
+
+          <div class="section">
+            <img src="../images/dog.jpg" alt="Vet" />
+            <div class="caption">
+              <h2>Vet</h2>
+              <button>See More</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="team">
+        <h2 class="title">our team</h2>
+        <div class="cont">
+          <div class="team-content">
+            <div class="team-item">
+              <div class="img-team">
+                <img src="../images/team/p2 2.png" alt="" />
+                <div class="links">
+                  <ul>
+                    <li>
+                      <a href=""
+                        ><i class="fa-brands fa-square-facebook"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="name-team">
+                <h3>ereiny nashaat</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Ullam esse autem sed voluptatibus molestiae numquam.
+                </p>
+              </div>
+            </div>
+            <div class="team-item">
+              <div class="img-team">
+                <img src="../images/team/p4.png" alt="" />
+                <div class="links">
+                  <ul>
+                    <li>
+                      <a href=""
+                        ><i class="fa-brands fa-square-facebook"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="name-team">
+                <h3>Maria Adel</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Ullam esse autem sed voluptatibus molestiae numquam.
+                </p>
+              </div>
+            </div>
+            <div class="team-item">
+              <div class="img-team">
+                <img src="../images/team/p3.jpg" alt="" />
+                <div class="links">
+                  <ul>
+                    <li>
+                      <a href=""
+                        ><i class="fa-brands fa-square-facebook"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="name-team">
+                <h3>Amera sayed</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Ullam esse autem sed voluptatibus molestiae numquam.
+                </p>
+              </div>
+            </div>
+            <div class="team-item">
+              <div class="img-team">
+                <img src="../images/team/p55.png" alt="" />
+                <div class="links">
+                  <ul>
+                    <li>
+                      <a href=""
+                        ><i class="fa-brands fa-square-facebook"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="name-team">
+                <h3>Rahma Apass</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Ullam esse autem sed voluptatibus molestiae numquam.
+                </p>
+              </div>
+            </div>
+            <div class="team-item">
+              <div class="img-team">
+                <img src="../images/team/p1.jpg" alt="" />
+                <div class="links">
+                  <ul>
+                    <li>
+                      <a href=""
+                        ><i class="fa-brands fa-square-facebook"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="name-team">
+                <h3>Ebtesam Mohamed</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Ullam esse autem sed voluptatibus molestiae numquam.
+                </p>
+              </div>
+            </div>
+            <div class="team-item">
+              <div class="img-team">
+                <img src="../images/team/p77.png" alt="" />
+                <div class="links">
+                  <ul>
+                    <li>
+                      <a href=""
+                        ><i class="fa-brands fa-square-facebook"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="name-team">
+                <h3>Mai khaled</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Ullam esse autem sed voluptatibus molestiae numquam.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="foot">
+      <div class="logo1">
+        <img src="../images/Logo-removebg-preview.png" alt="Medic Tool Logo" />
+      </div>
+      <nav class="navbar1">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact_us.html">Contact Us</a></li>
+          <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+        <div class="social">
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-linkedin"></i>
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+      </nav>
+    </footer>
+
+    <script src="../js/index.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

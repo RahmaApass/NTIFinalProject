@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+      integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/profile-style.css" />
+  </head>
+  <body>
+    <div class="container-fluid col-12 ms-2">
+      <!-- nav bar -->
+      <div class="head-Navbar">
+        <nav class="navbar navbar-expand-lg sticky-top">
+          <div class="container">
+            <a href=""
+              ><img src="/images/Logo-removebg-preview.png" alt=""
+            /></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a
+                    class="nav-link p-lg-3 active"
+                    aria-current="page"
+                    href="index.html"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link p-2 p-lg-3" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link p-2 p-lg-3" href="#">Contact us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link p-2 p-lg-3" href="#">Sections</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link p-2 p-lg-3" href="#">About</a>
+                </li>
+              </ul>
+              <form class="search d-flex" role="search">
+                <input
+                  class="input-search form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button class="btn btn-outline-success" type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div
+        class="profile-sections container-fluid d-flex justify-content-center align-items-center"
+      >
+        <!-------------------- Personal Desc------------- -->
+        <div class="personal-desc container mt-4">
+          <div class="card p-4 shadow-sm">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <h4 class="fw-bold" id="profileName"></h4>
+                <p>
+                  <strong>Address:</strong> <span id="profileAddress"></span>
+                </p>
+                <p><strong>Phone:</strong> <span id="profilePhone"></span></p>
+                <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+                <p><strong>Gender:</strong> <span id="profileGender"></span></p>
+                <p>
+                  <strong>Birthday:</strong> <span id="profileBirthday"></span>
+                </p>
+                <button
+                  class="btn btn-outline-success mt-2"
+                  onclick="enableEdit()"
+                >
+                  Edit
+                </button>
+
+                <button
+                  class="btn btn-outline-primary mt-2 d-none"
+                  id="saveBtn"
+                  onclick="saveProfile()"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-------------------- cart------------- -->
+      <div class="cart container my-5">
+        <div class="row g-4">
+          <!-- Saved Cart -->
+          <div class="Saved col-12 my-4">
+            <div class="card shadow-sm">
+              <div class="card-header fw-bold text-center">
+                <i class="fa-solid fa-bookmark me-3"></i>Saved
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table align-middle text-center">
+                    <thead class="table-head">
+                      <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Duration</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="saved-products-body"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- booking Cart -->
+          <div class="Booking-Cart col-12 my-4">
+            <div class="card shadow-sm">
+              <div class="card-header fw-bold text-center">
+                <i class="fa-solid fa-cart-shopping me-3"></i>Cart
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table align-middle text-center">
+                    <thead class="table-head">
+                      <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Duration</th>
+                        <th>Price</th>
+
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="cart-products-body"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total Card -->
+          <div class="Total-Card col-12">
+            <div class="card shadow-sm">
+              <div class="card-header fw-bold text-center text-white">
+                <i class="fa-solid fa-wallet me-3"></i>Total Price
+              </div>
+              <div class="card-body">
+                <div class="row text-center">
+                  <div class="col-md-4">
+                    <h5>Total Rent</h5>
+                    <p id="totalRent">$0</p>
+                  </div>
+                  <div class="col-md-4">
+                    <h5>Total Purchase</h5>
+                    <p id="totalPurchase">$0</p>
+                  </div>
+                  <div class="col-md-4">
+                    <h5>Total Price</h5>
+                    <p id="totalPrice">$0</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/profile.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+      integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>

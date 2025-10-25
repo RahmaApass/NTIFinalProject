@@ -1,0 +1,12 @@
+    Admin
+admin@example.com
+adminpassword
+
+Sub-admin
+mai@gmail.com
+123456789mai
+
+
+user
+r1234@gmail.com
+rahma1234

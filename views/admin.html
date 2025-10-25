@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Management</title>
+  <style>
+    :root {
+      --sidebar-bg: #a6d0b1;
+      --sidebar-header-bg: #8bb397;
+      --sidebar-text: #003300;
+      --sidebar-hover-bg: #94bca1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: white;
+      color: #005014;
+    }
+
+    #toggleBtn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: var(--sidebar-text);
+      color: var(--sidebar-bg);
+      border: none;
+      cursor: pointer;
+      font-size: 26px;
+      width: 35px;
+      height: 35px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s;
+      z-index: 1001;
+    }
+
+    #toggleBtn:hover {
+      background: var(--sidebar-hover-bg);
+      color: var(--sidebar-text);
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100vh;
+      background: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      transition: width 0.3s;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding-top: 60px;
+      z-index: 1000;
+    }
+
+    .sidebar.collapsed {
+      width: 60px;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--sidebar-header-bg);
+      padding: 10px;
+      border-bottom: 1px solid var(--sidebar-text);  margin-bottom: 25px;
+    }
+
+    .sidebar-header img{
+      transition: opacity 0.3s;
+      height: 100px;
+    } 
+
+    .sidebar.collapsed .sidebar-header img.logo {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+    }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: var(--sidebar-text);
+      text-decoration: none;
+      transition: background 0.3s;
+      font-size: 16px;
+    }
+
+    nav a .icon {
+      width: 40px;
+      display: inline-block;
+      text-align: center;
+      margin-right: 10px;
+      font-size: 28px;
+    }
+
+    .sidebar.collapsed nav a span.text {
+      display: none;
+    }
+
+    nav a:hover {
+      background: var(--sidebar-hover-bg);
+    }
+
+    main {
+      margin-left: 250px;
+      padding: 20px;
+      transition: margin-left 0.3s;
+      font-family: Arial, sans-serif;
+      color: #005014;
+      background: white;
+    }
+
+    .sidebar.collapsed ~ main {
+      margin-left: 60px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .filters input,
+    .filters select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      min-width: 200px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow-x: auto;
+    }
+
+    thead {
+      background-color: var(--sidebar-header-bg);
+      color: var(--sidebar-text);
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .role-badge {
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 13px;
+      color: white;
+      display: inline-block;
+    }
+
+    .super_admin { background-color: #ff6b6b; }
+    .admin { background-color: #4ecdc4; }
+    .moderator { background-color: #45b7d1; }
+    .editor { background-color: #96ceb4; }
+
+    .status.active { color: #27ae60; font-weight: bold; }
+    .status.inactive { color: #e74c3c; font-weight: bold; }
+    .status.pending { color: #f39c12; font-weight: bold; }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+
+      td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      td::before {
+        position: absolute;
+        left: 10px;
+        top: 12px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      td:nth-child(1)::before { content: "Name"; }
+      td:nth-child(2)::before { content: "Email"; }
+      td:nth-child(3)::before { content: "Role"; }
+      td:nth-child(4)::before { content: "Department"; }
+      td:nth-child(5)::before { content: "Status"; }
+    }
+  </style>
+</head>
+<body>
+
+<button id="toggleBtn">&#9776;</button>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="../images/Logo-removebg-preview.png" alt="Medic Tool Logo" />
+  </div>
+  <nav> 
+    <a href="#contact">
+      <span class="icon">&#9993;</span>
+      <span class="text">Contact Us</span>
+    </a>
+    <a href="#add-product">
+      <span class="icon">&#43;</span>
+      <span class="text">Add Product</span>
+    </a>
+    <a href="#home">
+      <span class="icon">&#8962;</span>
+      <span class="text">Home</span>
+    </a>
+  </nav>
+</div>
+
+<main>
+  <h1>Admin Management</h1>
+
+  <div class="filters">
+    <input type="text" id="searchName" placeholder="Search by name...">
+    <select id="filterRole">
+      <option value="">All Roles</option>
+      <option value="super_admin">Super Admin</option>
+      <option value="admin">Admin</option>
+      <option value="moderator">Moderator</option>
+      <option value="editor">Editor</option>
+    </select>
+  </div>
+
+  <table id="adminTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Department</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Alice Smith</td>
+        <td>alice@super.com</td>
+        <td><span class="role-badge super_admin">Super Admin</span></td>
+        <td>IT Department</td>
+        <td class="status active">Active</td>
+      </tr>
+      <tr>
+        <td>Bob Johnson</td>
+        <td>bob@admin.com</td>
+        <td><span class="role-badge admin">Admin</span></td>
+        <td>Events Team</td>
+        <td class="status inactive">Inactive</td>
+      </tr>
+      <tr>
+        <td>Carol Williams</td>
+        <td>carol@mod.com</td>
+        <td><span class="role-badge moderator">Moderator</span></td>
+        <td>Content Team</td>
+        <td class="status pending">Pending</td>
+      </tr>
+      <tr>
+        <td>David Brown</td>
+        <td>david@editor.com</td>
+        <td><span class="role-badge editor">Editor</span></td>
+        <td>Marketing</td>
+        <td class="status active">Active</td>
+      </tr>
+    </tbody>
+  </table>
+</main>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('toggleBtn');
+
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+  });
+
+  // Filtering logic
+  const nameInput = document.getElementById('searchName');
+  const roleSelect = document.getElementById('filterRole');
+  const rows = document.querySelectorAll('#adminTable tbody tr');
+
+  function filterTable() {
+    const nameValue = nameInput.value.toLowerCase();
+    const roleValue = roleSelect.value;
+
+    rows.forEach(row => {
+      const name = row.children[0].textContent.toLowerCase();
+      const roleClass = row.children[2].querySelector('span').classList[1]; // like 'admin', 'super_admin'
+
+      const nameMatch = name.includes(nameValue);
+      const roleMatch = roleValue === "" || roleClass === roleValue;
+
+      row.style.display = (nameMatch && roleMatch) ? "" : "none";
+    });
+  }
+
+  nameInput.addEventListener('input', filterTable);
+  roleSelect.addEventListener('change', filterTable);
+</script>
+
+</body>
+</html>

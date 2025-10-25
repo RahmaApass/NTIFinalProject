@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            min-height: 100vh;
+            direction: rtl;
+        }
+
+        .header {
+            background: #439e69;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: #439e69;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .contact-card h2 {
+            color: #439e69;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #439e69;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #439e69;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-primary {
+            background: #439e69;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #2d7a4a;
+        }
+
+        .message {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: #439e69;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .contact-info .icon {
+            font-size: 20px;
+            margin-left: 10px;
+            color: #439e69;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>تواصل معنا</h1>
+        <a href="index.html" class="back-btn">العودة للصفحة الرئيسية</a>
+    </div>
+
+    <div class="container">
+        <div class="contact-card">
+            <h2>أرسل لنا رسالة</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="senderName">الاسم:</label>
+                    <input type="text" id="senderName" required>
+                </div>
+                <div class="form-group">
+                    <label for="senderEmail">البريد الإلكتروني:</label>
+                    <input type="email" id="senderEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">الموضوع:</label>
+                    <input type="text" id="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">الرسالة:</label>
+                    <textarea id="message" placeholder="اكتب رسالتك هنا..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">إرسال الرسالة</button>
+            </form>
+            <div id="contactMessage" class="message" style="display: none;"></div>
+        </div>
+
+        <div class="contact-info">
+            <h3>معلومات التواصل</h3>
+            <p><span class="icon">📧</span>البريد الإلكتروني: info@company.com</p>
+            <p><span class="icon">📞</span>الهاتف: +966 12 345 6789</p>
+            <p><span class="icon">📍</span>العنوان: الرياض، المملكة العربية السعودية</p>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        const currentUser = JSON.parse(localStorage.getItem('CurrentUser'));
+        if (!currentUser) {
+            window.location.href = 'signin.html';
+        }
+
+        // Auto-fill user information if available
+        if (currentUser) {
+            document.getElementById('senderName').value = currentUser.name || '';
+            document.getElementById('senderEmail').value = currentUser.email || '';
+        }
+
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('senderName').value.trim();
+            const email = document.getElementById('senderEmail').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const messageElement = document.getElementById('contactMessage');
+            
+            // Clear previous message
+            messageElement.style.display = 'none';
+            messageElement.className = 'message';
+            
+            // Validation
+            if (!name || !email || !subject || !message) {
+                showMessage('جميع الحقول مطلوبة', 'error');
+                return;
+            }
+            
+            // Create message object
+            const contactMessage = {
+                id: Date.now(), // Simple ID based on timestamp
+                name: name,
+                email: email,
+                subject: subject,
+                message: message,
+                timestamp: new Date().toISOString(),
+                status: 'unread'
+            };
+            
+            // Get existing messages from localStorage
+            let contactMessages = JSON.parse(localStorage.getItem('ContactMessages')) || [];
+            
+            // Add new message
+            contactMessages.push(contactMessage);
+            
+            // Save to localStorage
+            localStorage.setItem('ContactMessages', JSON.stringify(contactMessages));
+            
+            // Show success message
+            showMessage('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.', 'success');
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+            
+            // Auto-fill user information again
+            if (currentUser) {
+                document.getElementById('senderName').value = currentUser.name || '';
+                document.getElementById('senderEmail').value = currentUser.email || '';
+            }
+        });
+
+        function showMessage(text, type) {
+            const messageElement = document.getElementById('contactMessage');
+            messageElement.textContent = text;
+            messageElement.className = `message ${type}`;
+            messageElement.style.display = 'block';
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageElement.style.display = 'none';
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
+

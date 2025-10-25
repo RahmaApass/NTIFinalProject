@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-section {
+            direction: ltr;
+        }
+
+        /* ====== Header Description ====== */
+        .header-des {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #a6d0b1;
+            width: 100%;
+            height: 200px;
+            padding-top: 10px;
+        }
+
+        .header-des h1 {
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            border-bottom: #284f47 2px double;
+            display: inline-block;
+            color: #284f47;
+        }
+
+        .header-des p {
+            color: #284f47;
+            font-size: 18px;
+            margin-top: 5px;
+            max-width: 90%;
+            line-height: 1.5;
+        }
+
+        .contact {
+            margin-top: 150px;
+            transform: translate(25%, -8%);
+        }
+
+        .contact input,
+        .contact textarea {
+            border: none;
+            border-radius: 20px;
+            background-color: #a6d0b1;
+            margin-bottom: 15px;
+            color: #284f47;
+            height: 2.5rem;
+            padding: 10px 0 10px 20px;
+        }
+
+        .contact .contact-email-tel input {
+            width: 24.5%;
+            margin-right: 0.5%;
+        }
+
+        .contact .contact-name input {
+            width: 50%;
+        }
+
+        .contact .contact-massage textarea {
+            width: 50%;
+            height: 10em;
+            padding: 10px 0 10px 20px;
+        }
+
+        .contact button {
+            background-color: #768e7b;
+            color: #fff;
+            border-radius: 20px;
+            padding: 10px 30px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .info-boxes {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .info-boxes .contain {
+            width: 25%;
+            text-align: center;
+            margin-bottom: 50px;
+            margin-left: 40px;
+            padding: 10px;
+            box-shadow: 3px 3px 6px 6px gray;
+            border-radius: 30px;
+        }
+
+        .info-boxes h4 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .info-boxes i {
+            color: #fff;
+        }
+
+        .map {
+            width: 100%;
+            padding: 50px 0 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .map div {
+            width: 90%;
+            height: 80vh;
+        }
+
+        .map div iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            border: none;
+        }
+
+        .message {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
+            width: 50%;
+            font-weight: bold;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+<section class="contact-section" id="contact">
+    <div class="header-des">
+        <h1>Contact Us</h1>
+        <p>
+“We’re always ready to hear from you. Share your complaints, suggestions, or ideas – let’s improve together.”</p>
+    </div>
+
+    <div class="container">
+        <section class="contact">
+            <div class="contact-email-tel">
+                <input type="email" id="contactEmail" placeholder="Email" required />
+                <input type="tel" id="contactPhone" placeholder="Phone" />
+            </div>
+            <div class="contact-name">
+                <input type="text" id="contactName" placeholder="Name" required />
+            </div>
+            <div class="contact-massage">
+                <textarea id="contactMessageInput" placeholder="Message" required></textarea>
+            </div>
+            <button type="submit" id="submitContactForm">Submit</button>
+
+            <div id="contactMessage" class="message" style="display: none;"></div>
+        </section>
+    </div>
+
+    <div class="container">
+        <section class="info-boxes">
+            <div class="contain-a contain">
+                <h4><i class="fas fa-phone"></i> (+876) 765 665</h4>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="contain-b contain">
+                <h4><i class="fas fa-envelope"></i> mail@influenca.id</h4>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="contain-c contain">
+                <h4><i class="fas fa-map-marker-alt"></i> London Eye, London</h4>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+        </section>
+    </div>
+
+    <section class="map">
+        <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.4!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ5LjAiTiA0NsKwNDAnMzEuMSJF!5e0!3m2!1sen!2ssa!4v1234567890"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+</section>
+
+<script>
+    const currentUser = JSON.parse(localStorage.getItem('CurrentUser'));
+    if (!currentUser) {
+        window.location.href = 'signin.html';
+    }
+
+    if (currentUser) {
+        document.getElementById('contactName').value = currentUser.name || '';
+        document.getElementById('contactEmail').value = currentUser.email || '';
+    }
+
+    document.getElementById('submitContactForm').addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('contactName').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const phone = document.getElementById('contactPhone').value.trim();
+        const message = document.getElementById('contactMessageInput').value.trim();
+        const messageElement = document.getElementById('contactMessage');
+
+        messageElement.style.display = 'none';
+        messageElement.className = 'message';
+
+        if (!name || !email || !message) {
+            showMessage('All fields are required (except phone).', 'error');
+            return;
+        }
+
+        const contactMessage = {
+            id: Date.now(),
+            name: name,
+            email: email,
+            phone: phone,
+            message: message,
+            timestamp: new Date().toISOString(),
+            status: 'unread'
+        };
+
+        let contactMessages = JSON.parse(localStorage.getItem('ContactMessages')) || [];
+        contactMessages.push(contactMessage);
+        localStorage.setItem('ContactMessages', JSON.stringify(contactMessages));
+
+        showMessage('Your message has been sent successfully!', 'success');
+
+        document.getElementById('contactPhone').value = '';
+        document.getElementById('contactMessageInput').value = '';
+
+        if (currentUser) {
+            document.getElementById('contactName').value = currentUser.name || '';
+            document.getElementById('contactEmail').value = currentUser.email || '';
+        }
+    });
+
+    function showMessage(text, type) {
+        const messageElement = document.getElementById('contactMessage');
+        messageElement.textContent = text;
+        messageElement.className = `message ${type}`;
+        messageElement.style.display = 'block';
+
+        if (type === 'success') {
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 5000);
+        }
+    }
+</script>
+
+</body>
+</html>

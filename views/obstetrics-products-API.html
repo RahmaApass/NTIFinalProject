@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Obstetrics & Gynecology</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+      integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/obstetrics.css">
+    
+  </head>
+  <body>
+    <body class="bg-light">
+    <!-- Header -->
+    <header class="header-bar">
+      <div class="lef-and-right-space-container">
+        <div class="header-content">
+          <div class="logo">
+            <img src="images/Logo-removebg-preview.png" alt="" />
+          </div>
+          <div class="search-bar">
+            <input type="search" placeholder="Search..." />
+            <button type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="lef-and-right-space-container">
+      <div class="pages-nav">
+        <div class="nav-bar">
+          <button>Browse <i class="fa-solid fa-angles-right"></i></button>
+          <div class="pages">
+            <a href="index.html"
+              >HOME <i class="fa-solid fa-chevron-down"></i
+            ></a>
+            <a href="index.html" id="services"
+              >Service <i class="fa-solid fa-chevron-down"></i
+            ></a>
+            <a href="#">Pages <i class="fa-solid fa-chevron-down"></i></a>
+            <a href="#">Blog <i class="fa-solid fa-chevron-down"></i></a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+        <div class="Sign-in">
+          <p><i class="fa-solid fa-user"></i> Sign in</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="title">
+      <div class="title-content">
+        <h2>Obstetrics & Gynecology</h2>
+        <a href="#">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <a href="#">Obstetrics & Gynecology Store</a>
+      </div>
+    </div>
+
+   
+
+    <!-- Filters + Products -->
+    <div class="container my-4">
+      <div class="row">
+        <!-- Filters -->
+ <div class="col-md-3 shop-filters">
+  <!-- Category Filter -->
+  <div class="filter-card">
+    <h4>Category</h4>
+    <div class="checkbox">
+      <div>
+        <input type="radio" name="category" value="rent" id="rent" />
+        <label for="rent">For Rent</label>
+      </div>
+      <div>
+        <input type="radio" name="category" value="sell" id="sell" />
+        <label for="sell">For Sell</label>
+      </div>
+      <div>
+        <input type="radio" name="category" value="all" id="cat-all" checked />
+        <label for="cat-all">All</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Price Filter -->
+  <div class="filter-card mt-4">
+    <h4>Price Range</h4>
+    <div class="price-range">
+      <label for="minPrice">Min:</label>
+      <input type="number" id="minPrice" placeholder="0" class="form-control mb-2" />
+
+      <label for="maxPrice">Max:</label>
+      <input type="number" id="maxPrice" placeholder="10000" class="form-control mb-2" />
+
+      <button id="filterPriceBtn" class="btn pricebtn btn-primary btn-sm w-100">Filter</button>
+    </div>
+  </div>
+</div>
+
+        <!-- Product Grid -->
+        <div class="col-md-9">
+          <div class="row" id="obstetricsProducts"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script to load fake API -->
+ <script>
+  const container = document.getElementById("obstetricsProducts");
+  let allProducts = [];
+
+  fetch("https://mocki.io/v1/3915da26-0f59-4fdf-b154-b7c764b8d81d")
+    .then((res) => res.json())
+    .then((data) => {
+      allProducts = data;
+      renderProducts(allProducts);
+
+      // Add filter listeners
+      document.getElementById("rent").addEventListener("change", applyFilters);
+      document.getElementById("sell").addEventListener("change", applyFilters);
+      document.getElementById("cat-all").addEventListener("change", applyFilters);
+      document.getElementById("filterPriceBtn").addEventListener("click", applyFilters);
+    });
+
+  function applyFilters() {
+    const selectedCategory = document.querySelector('input[name="category"]:checked')?.value || "all";
+    const min = parseFloat(document.getElementById("minPrice").value) || 0;
+    const max = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+
+    const filtered = allProducts.filter((item) => {
+      const price = item.action === "rent" ? parseFloat(item.rentPrice) : parseFloat(item.sellPrice);
+
+      const matchCategory =
+        selectedCategory === "all" ? true : item.action === selectedCategory;
+
+      const matchPrice = price >= min && price <= max;
+
+      return matchCategory && matchPrice;
+    });
+
+    renderProducts(filtered);
+  }
+
+  function renderProducts(products) {
+    container.innerHTML = "";
+    if (products.length === 0) {
+      container.innerHTML = `<p class="text-muted">No products match your filters.</p>`;
+      return;
+    }
+
+    products.forEach((item) => {
+      const cardWrapper = document.createElement("div");
+      cardWrapper.className = "col-md-4 mb-4";
+
+      const card = document.createElement("div");
+      card.className = "product-card p-3 border rounded bg-white shadow-sm";
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.equipmentName}" class="img-fluid mb-2">
+        <h5>${item.equipmentName}</h5>
+        <p class="status text-primary fw-bold">${
+          item.action === "rent" ? "For Rent" : "For Sale"
+        }</p>
+        <p><strong>Price:</strong> ${
+          item.action === "rent"
+            ? item.rentPrice + " EGP"
+            : item.sellPrice + " EGP"
+        }</p>
+        ${
+          item.action === "rent"
+            ? `<p><strong>Duration:</strong> ${item.duration}</p>`
+            : ""
+        }
+        <p><strong>Condition:</strong> ${item.condition}</p>
+        <button class="btn btn-success w-100 mt-2">${item.action === "rent" ? "Rent Now" : "Buy Now"}</button>
+      `;
+
+      cardWrapper.appendChild(card);
+      container.appendChild(cardWrapper);
+    });
+  }
+</script>
+
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+      integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>
